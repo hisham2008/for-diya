@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Diya</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@300;400&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body, html {
+            width: 100%; height: 100%;
+            font-family: 'Poppins', sans-serif;
+            background: radial-gradient(circle at center, #1b1b2f 0%, #020205 100%);
+            color: white;
+            overflow: hidden;
+            position: relative;
+        }
+
+        #music-btn {
+            position: fixed; top: 20px; right: 20px; z-index: 1000;
+            background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.4);
+            color: white; padding: 10px 20px; border-radius: 30px; cursor: pointer;
+            backdrop-filter: blur(5px); transition: 0.3s;
+        }
+
+        .page {
+            position: absolute; width: 100%; height: 100%;
+            display: none; flex-direction: column;
+            justify-content: center; align-items: center;
+            text-align: center; padding: 20px 8%; 
+        }
+
+        .active { display: flex; }
+
+        h1 { font-family: 'Dancing Script', cursive; font-size: 3rem; color: #ff85a1; margin-bottom: 20px; }
+        
+        .message-box {
+            background: rgba(255, 255, 255, 0.07);
+            padding: 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            max-width: 850px;
+            line-height: 1.8;
+            font-size: 1.05rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+            max-height: 60vh;
+            overflow-y: auto; /* Ensures long text is readable on mobile */
+        }
+
+        /* Custom scrollbar for the message box */
+        .message-box::-webkit-scrollbar { width: 5px; }
+        .message-box::-webkit-scrollbar-thumb { background: #ff4d6d; border-radius: 10px; }
+
+        .btn {
+            margin-top: 30px; padding: 15px 40px;
+            background: #fff; border: none; border-radius: 50px;
+            font-weight: bold; cursor: pointer; transition: 0.4s;
+            box-shadow: 0 5px 15px rgba(255,255,255,0.2);
+        }
+
+        .btn:hover { background: #ff4d6d; color: white; transform: scale(1.05); }
+
+        .star { position: absolute; background: white; border-radius: 50%; opacity: 0.6; pointer-events: none; }
+        
+        .fade-in { opacity: 0; animation: fadeInUp 1.5s forwards; }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .heart-rain {
+            position: absolute; color: #ff4d6d; font-size: 20px;
+            animation: fall 4s linear forwards; z-index: 10;
+        }
+        @keyframes fall {
+            to { transform: translateY(110vh); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<audio id="bgMusic" loop>
+    <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<button id="music-btn" onclick="toggleMusic()">🎵 Play Music</button>
+
+<div id="page1" class="page active">
+    <h1 class="fade-in">Hi Diya</h1>
+    <div class="message-box fade-in" style="animation-delay: 0.5s;">
+        <p>
+            Diya, unna enaku romba pudikkum… romba na rombaaa.I love the way you be there for everyone,I like the way you smile, litreally to my eyes ur perfect.... Yen nu exact-ah solla mudiyala, aana un kitta irukumbodhu ellam konjam different-ah feel aagudhu. Nee pesina, siricha, even small things panna kooda enaku romba special-ah theriyum different ahh feel agum. Naan reason thedi solla try panna kooda adhu words-la varadhu. I just know that I really love you, and I genuinely want to be there for you — un happy moments-la kooda, tough times-la kooda. Nothing forced, nothing complicated… I just want to stay, support you, and be someone you can count on.
+        </p>
+    </div>
+    <button class="btn fade-in" style="animation-delay: 1s;" onclick="startJourney()">Keep Reading</button>
+</div>
+
+<div id="page2" class="page">
+    <h1>My Promise</h1>
+    <div class="message-box fade-in">
+        <p>
+            Naan un kitta oru thing mattum dhaan sollanum nu nenachen… I just want us to be there for each other. Chinna chinna vishayangal ellam serndhu pannalam, random ah pesalam, sirikkalam… just being comfortable with each other. basically like a best frnds ana i love you,Un past relationship pathi enaku konjam theriyum, and I know adhu easy illa,I know how much it hurted you in many ways , ana i promise u i wont be that way,I want to give you all the love u deserve. Aana one thing naan promise panren naan unna eppavum bad ah treat panna maaten,Like ur past avangala mari na iruka maten, illa unna hurt panna maaten endha situation la yum. Naan un life la oru safe person ah irukanum nu dhaan aasai… someone who listens to you, supports you, and stays... in worst case if incase i make u cry before the tears dry ill make u smile.
+        </p>
+    </div>
+    <button class="btn" onclick="nextPage(3)">Continue</button>
+</div>
+
+<div id="page3" class="page">
+    <h1>I'll Wait...</h1>
+    <div class="message-box fade-in">
+        <p>
+             Diya even if u leave me you will be never unloved by me.. I’ll wait for you. like the farmers wait for the rain.. Trees for the blossom.. In the quiet of twilight, I remain.. incomplete without you. counting the stars. In the hope for ur return, I will wish for your name to the god <3 I’ll wait for you, forever In the moon’s tender glow.. even if u cannot see through my eyes the love i held for u... only god knows how much i love u.
+        </p>
+    </div>
+    <button class="btn" onclick="showFinal()">One Last Question</button>
+</div>
+
+<div id="page4" class="page">
+    <h1 style="font-size: 3.5rem;">Can I be yours?</h1>
+    <div style="display:flex; gap: 20px;">
+        <button class="btn" onclick="celebrate('Hisham is the happiest person right now. ❤️')">Yes</button>
+        <button class="btn" onclick="celebrate('Still happy you saw this. 😊')">Of Course</button>
+    </div>
+</div>
+
+<script>
+    const music = document.getElementById('bgMusic');
+
+    function startJourney() {
+        // Start the song.mp3.mp3 file on the first user interaction
+        music.play();
+        document.getElementById('music-btn').innerText = "⏸ Pause";
+        nextPage(2);
+    }
+
+    function toggleMusic() {
+        if (music.paused) { 
+            music.play(); 
+            document.getElementById('music-btn').innerText = "⏸ Pause"; 
+        } else { 
+            music.pause(); 
+            document.getElementById('music-btn').innerText = "🎵 Play"; 
+        }
+    }
+
+    function nextPage(n) {
+        document.querySelector('.page.active').classList.remove('active');
+        const next = document.getElementById('page' + n);
+        next.classList.add('active');
+        
+        // Re-trigger animations
+        const content = next.querySelector('.fade-in');
+        if(content) {
+            content.style.animation = 'none';
+            content.offsetHeight; 
+            content.style.animation = null;
+        }
+    }
+
+    // Stars Generation
+    for (let i = 0; i < 120; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        const size = Math.random() * 2;
+        star.style.width = size + 'px';
+        star.style.height = size + 'px';
+        star.style.left = Math.random() * 100 + '%';
+        star.style.top = Math.random() * 100 + '%';
+        document.body.appendChild(star);
+    }
+
+    function showFinal() {
+        nextPage(4);
+        setInterval(createHeart, 400);
+    }
+
+    function createHeart() {
+        const heart = document.createElement('div');
+        heart.className = 'heart-rain';
+        heart.innerHTML = '❤️';
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.top = '-5%';
+        heart.style.fontSize = Math.random() * 15 + 15 + 'px';
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 4000);
+    }
+
+    function celebrate(msg) {
+        alert(msg);
+    }
+</script>
+
+</body>
+</html>
